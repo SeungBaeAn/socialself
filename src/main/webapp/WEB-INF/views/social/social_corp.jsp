@@ -37,8 +37,8 @@
 
 	  <div class="inner_motion full_width">
       <div class="result_tit">
-        <h2 class="tit_page">자가진단 참여기업 리스트</h2>
-        <a href="#" class="btn bg_orange btn_print" onclick="javascript:window.print()">인쇄</a>
+        <h2 class="tit_page">자가진단 참여기업 리스트<small>  Corporation List</small></h2>
+       
       </div>
     <input id="KPI_SEQ" type="hidden" name="KPI_SEQ"  value="{{_data.KPI_SEQ}}"></input>
    	<c:if test="${count == 0}">
@@ -47,11 +47,13 @@
 	<c:if test="${count > 0}"> 
      <table class="tbl_result_detail mgt30" style="text-align:center;">
         <colgroup>
-          <col style="width:115px;" />
-          <col style="width:115px;" />
-          <col style="width:250px;" />
-          <col />
           <col style="width:145px;" />
+          <col style="width:115px;" />
+          <col style="width:115px;" />
+           <col style="width:145px;" />
+          <col style="width:115px;" />
+           <col style="width:115px;" />
+            <col style="width:125px;" />
         </colgroup>
         <thead>
           <tr style="text-align:center;">
@@ -67,17 +69,17 @@
         <tbody>
         <c:forEach var="social" items="${list}">
            <tr>
-            <td class="alignLeft">${social.company}</td>
+            <td  style="text-align:center;"><c:if test="${social.kpi_step eq 9}"><a href="/social/self/stepResultList.do?kpi_seq=${social.kpi_seq}" >${social.company}</a></c:if><c:if test="${social.kpi_step ne 9}">${social.company}</c:if></td>
             <td class="alignLeft">${social.business_type}</td>
-           <td class="alignLeft">${social.bs_type}</td>
-            <td class="alignLeft">${social.kpi_step_nm}</td>
-            <td class="alignLeft">${social.event_use_yn}</td>
-            <td class="alignLeft">${social.kpi_total_num}</td>
+            <td class="alignLeft">${social.bs_type}</td>
+            <td style="text-align:center;">${social.kpi_step_nm}</td>
+            <td style="text-align:center;">${social.event_use_yn}</td>
+            <td style="text-align:center;">${social.kpi_total_num}</td>
             <td class="alignLeft">${social.load_date}</td>
           </tr>
       </c:forEach> 
         </tbody>
-      </table>
+      </table><br/>
       		<table>
 			<tr>
 				<td align="center">${pagingHtml}</td>

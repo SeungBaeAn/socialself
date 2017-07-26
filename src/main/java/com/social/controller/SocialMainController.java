@@ -325,6 +325,41 @@ public class SocialMainController {
 //		   return ModelAndView;
 		   return mv;
 	   }
+	    
+
+	    @RequestMapping("/stepResultList.do")
+	    public ModelAndView stepResultList(@RequestParam("kpi_seq") int kpi_seq, SessionStatus status) {
+	 //   	System.out.println("socialCommand=============:"+socialCommand);
+	//	   socialService.updateStep9(socialCommand);
+
+		   
+	//	   int kpi_seq = socialCommand.getKpi_seq();
+		   SocialCommand social = socialService.getStepResult(kpi_seq);
+		   
+		   SocialCommand ment = socialService.resultMent(kpi_seq);
+		   SocialCommand tlist = socialService.resultSteptop(kpi_seq);
+		   SocialCommand llist = socialService.resultSteplow(kpi_seq);
+		   ModelAndView mv = new ModelAndView();
+		   mv.setViewName("/social/stepResult");
+		   mv.addObject("ment", ment);
+		   mv.addObject("llist", llist);
+		   mv.addObject("tlist", tlist); 
+		   mv.addObject("social", social);
+//		   ModelAndView mvv = new ModelAndView();
+//		   mv.setViewName("/social/stepResult");
+//		   mv.addObject("social", social);
+		   
+		  
+//		   ModelAndView mvs = new ModelAndView();
+//		   mv.setViewName("/social/stepResult");
+//		   mv.addObject("llist", llist);
+//		   
+		   System.out.println("stepResultList.do=============:"+kpi_seq);
+	//	   return new ModelAndView("/social/stepResult","social",social);
+		
+//		   return ModelAndView;
+		   return mv;
+	   }	    
 	    @RequestMapping(value = "/gsonList1.do", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
 	    public @ResponseBody String gsonList1(@ModelAttribute("social") SocialCommand socialCommand, BindingResult result, SessionStatus status) {
 	        Gson gson = new Gson();
