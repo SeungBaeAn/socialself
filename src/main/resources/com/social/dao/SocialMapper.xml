@@ -1,0 +1,880 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.social.dao.SocialMapper">  
+	<select id="getMemberList" parameterType="map" resultType="SocialCommand">
+		SELECT *
+		FROM (SELECT a.*, rownum rnum 
+				FROM (SELECT * 
+						FROM kpi_user 
+						ORDER BY reg_date DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>
+	</select>
+    <select id="resultSteptop" parameterType="map" resultType="SocialCommand">
+      <![CDATA[ 
+ 		select  WM_CONCAT(ROW_LIST) as  top_list
+		from(
+		 select B.GRP_NM AS ROW_LIST,a.KPI_SEQ,a.END_DATE,a.KPI_AND,a.KPI_STEP
+		from social_info_master a,
+		serviceinfo_code_standard b
+		where 1=1
+		and( 
+		(b.SERVICE_NM='KPI_FORM1' and b.GRP_CD ='SERVICE_INFO' and a.KPI_FORM1 >= b.SERVICE_NUM)
+		or (b.SERVICE_NM='KPI_FORM2' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM2 >= b.SERVICE_NUM)
+		or (b.SERVICE_NM='KPI_FORM3' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM3 >= b.SERVICE_NUM)
+		or (b.SERVICE_NM='KPI_FORM4' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM4 >= b.SERVICE_NUM)
+		or (b.SERVICE_NM='KPI_FORM5' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM5 >= b.SERVICE_NUM)
+		or (b.SERVICE_NM='KPI_FORM6' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM6 >= b.SERVICE_NUM)
+		or (b.SERVICE_NM='KPI_FORM7' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM7 >= b.SERVICE_NUM)
+		or (b.SERVICE_NM='KPI_FORM9' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM9 >= b.SERVICE_NUM)
+		or (b.SERVICE_NM='KPI_FORM13' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM13 >= b.SERVICE_NUM)
+		or (b.SERVICE_NM='KPI_FORM8' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM8  >= b.SERVICE_NUM)
+		or (b.SERVICE_NM='KPI_FORM10' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM10 >= b.SERVICE_NUM)
+		or (b.SERVICE_NM='KPI_FORM11' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM11 >= b.SERVICE_NUM)
+		or (b.SERVICE_NM='KPI_FORM12' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM12 >= b.SERVICE_NUM)
+		or (b.SERVICE_NM='KPI_FORM15' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM15 >= b.SERVICE_NUM)
+		)
+		AND KPI_AND ='N'
+		AND KPI_SEQ  =  #{kpi_seq}
+		)cnt     
+      		]]>		
+   </select> 
+    <select id="resultSteplow" parameterType="map" resultType="SocialCommand">
+      <![CDATA[ 
+         select  WM_CONCAT(ROW_LIST) as  low_list
+		from(
+		 select B.GRP_NM AS ROW_LIST,a.KPI_SEQ,a.END_DATE,a.KPI_AND,a.KPI_STEP
+		from social_info_master a,
+		serviceinfo_code_standard b
+		where 1=1
+		and( 
+	    (b.SERVICE_NM='KPI_FORM1' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM1 < b.SERVICE_STANDARD )
+		or (b.SERVICE_NM='KPI_FORM2' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM2 < b.SERVICE_STANDARD )
+		or (b.SERVICE_NM='KPI_FORM3' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM3 < b.SERVICE_STANDARD )
+		or (b.SERVICE_NM='KPI_FORM4' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM4 < b.SERVICE_STANDARD)
+		or (b.SERVICE_NM='KPI_FORM5' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM5 < b.SERVICE_STANDARD)
+		or (b.SERVICE_NM='KPI_FORM6' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM6 < b.SERVICE_STANDARD)
+		or (b.SERVICE_NM='KPI_FORM7' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM7 < b.SERVICE_STANDARD)
+		or (b.SERVICE_NM='KPI_FORM9' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM9 < b.SERVICE_STANDARD)
+		or (b.SERVICE_NM='KPI_FORM13' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM13 < b.SERVICE_STANDARD)
+		or (b.SERVICE_NM='KPI_FORM8' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM8  < b.SERVICE_STANDARD)
+		or (b.SERVICE_NM='KPI_FORM10' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM10 < b.SERVICE_STANDARD)
+		or (b.SERVICE_NM='KPI_FORM11' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM11 < b.SERVICE_STANDARD)
+		or (b.SERVICE_NM='KPI_FORM12' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM12 < b.SERVICE_STANDARD)
+		or (b.SERVICE_NM='KPI_FORM15' and b.GRP_CD ='SERVICE_INFO'  and a.KPI_FORM15 < b.SERVICE_STANDARD)
+		 )
+	   AND KPI_AND ='N'
+	   AND KPI_SEQ  =  #{kpi_seq}
+       	)cnt      
+      		]]>		
+   </select> 	
+  <select id="resultMent" parameterType="map" resultType="SocialCommand">
+  <![CDATA[ 
+        select 
+		  service_nm as step_mentnm,SERVICE_PERCENT as step_imgnm,kpi_seq
+		from(
+             select a.kpi_seq, b.service_nm,b.SERVICE_PERCENT,
+              abs ( b.SERVICE_NUM - a.KPI_TOTAL),
+        ROW_NUMBER() OVER (ORDER BY ABS(b.SERVICE_NUM -  a.KPI_TOTAL)) rn
+		from social_info_master a,
+		serviceinfo_code_standard b
+		where 1=1
+		and b.GRP_CD ='SERVICE_POINT'
+        and a.kpi_seq = #{kpi_seq}
+        )
+        where rn =1
+        and kpi_seq = #{kpi_seq}
+       ]]>   
+  </select>	
+	<select id="getStepList1" parameterType="map" resultType="SocialCommand">
+       select
+		KPI_SEQ
+		,COMPANY
+		,LICENSEE
+		,CEO_NAME
+		,BUSINESS_TYPE
+		,BS_TYPE
+		,CITY_ZONE
+		,KPI_FORM1
+		,KPI_FORM2
+		,KPI_FORM3
+		,KPI_FORM4
+		,KPI_FORM5
+		,KPI_FORM6
+		,KPI_FORM7
+		,KPI_FORM8
+		,KPI_FORM9
+		,KPI_FORM10
+		,KPI_FORM11
+		,KPI_FORM12
+		,KPI_FORM13
+		,KPI_FORM14
+		,KPI_FORM15
+		,KPI_FORM3_1
+		,KPI_FORM3_3
+		,KPI_FORM3_2
+		,KPI_FORM6_1
+		,KPI_FORM6_2
+		,KPI_FORM6_3
+		,KPI_FORM13_1 
+		,KPI_FORM13_2 
+		,KPI_FORM13_3 
+		,KPI_FORM13_4 		
+		,KPI_STEP
+		,LOAD_DATE
+		,END_DATE
+		,EVENT_NAME
+		,EVENT_ADDR
+		,EVENT_HP
+		,EVENT_USE
+	FROM  SOCIAL_INFO_MASTER
+		where KPI_SEQ = (select max(KPI_SEQ) from SOCIAL_INFO_MASTER)
+		AND KPI_STEP ='0'
+		AND END_DATE IS NULL
+		order by LOAD_DATE desc
+	</select>	
+	<select id="getStepList2" parameterType="int" resultType="SocialCommand">
+       select
+			KPI_SEQ
+			,COMPANY
+			,LICENSEE
+			,CEO_NAME
+			,BUSINESS_TYPE
+			,BS_TYPE
+			,CITY_ZONE
+			,KPI_FORM1
+			,KPI_FORM2
+			,KPI_FORM3
+			,KPI_FORM3_1
+			,KPI_FORM3_3
+			,KPI_FORM3_2
+			,KPI_FORM6_1
+			,KPI_FORM6_2
+			,KPI_FORM6_3
+			,KPI_FORM13_1
+			,KPI_FORM13_2
+			,KPI_FORM13_3
+			,KPI_FORM13_4
+			,KPI_FORM4
+			,KPI_FORM5
+			,KPI_FORM6
+			,KPI_FORM7
+			,KPI_FORM8
+			,KPI_FORM8_PAY
+			,KPI_FORM9
+			,KPI_FORM10
+			,KPI_FORM10_PAY
+			,KPI_FORM11
+			,KPI_FORM11_PAY
+			,KPI_FORM12
+			,KPI_FORM12_PAY
+			,KPI_FORM13
+			,KPI_FORM14
+			,KPI_FORM15
+			,KPI_TOTAL
+			,KPI_STEP
+			,LOAD_DATE
+			,END_DATE
+			,KPI_AND
+			,EVENT_NAME
+			,EVENT_ADDR
+			,EVENT_HP
+			,EVENT_USE
+	FROM  SOCIAL_INFO_MASTER
+		WHERE 1 = 1
+		AND kpi_seq = #{kpi_seq}
+		AND END_DATE IS NULL
+		order by KPI_SEQ desc
+	</select>
+	<select id="getStepList3" parameterType="int" resultType="SocialCommand">	
+	 <![CDATA[ 
+	   select 
+		cnt.KPI_SEQ
+		,cnt.COMPANY
+		,cnt.LICENSEE
+		,cnt.CEO_NAME
+		,cnt.BUSINESS_TYPE
+		,cnt.BS_TYPE
+		,cnt.CITY_ZONE
+		,cnt.KPI_FORM1
+		,cnt.KPI_FORM2
+		,cnt.KPI_FORM3
+		,cnt.KPI_FORM4
+		,cnt.KPI_FORM5
+		,cnt.KPI_FORM6
+		,cnt.KPI_FORM7
+		,cnt.KPI_FORM8
+		,cnt.KPI_FORM8_PAY
+		,cnt.KPI_FORM9
+		,cnt.KPI_FORM10
+		,cnt.KPI_FORM10_PAY
+		,cnt.KPI_FORM11
+		,cnt.KPI_FORM11_PAY
+		,cnt.KPI_FORM12
+		,cnt.KPI_FORM12_PAY
+		,cnt.KPI_FORM13
+		,cnt.KPI_FORM14
+		,cnt.KPI_FORM15
+		,cnt.KPI_FORM3_1
+		,cnt.KPI_FORM3_3
+		,cnt.KPI_FORM3_2
+		,cnt.KPI_FORM6_1
+		,cnt.KPI_FORM6_2
+		,cnt.KPI_FORM6_3
+		,cnt.KPI_FORM13_1 
+		,cnt.KPI_FORM13_2 
+		,cnt.KPI_FORM13_3 
+		,cnt.KPI_FORM13_4 		
+		,cnt.KPI_STEP
+		,cnt.LOAD_DATE
+		,cnt.END_DATE
+		,KPI_WORK_N
+		,KPI_PAY_N
+		,KPI_HERE_N
+		,KPI_SALES_N
+		,KPI_BS_N
+,(KPI_FORM1+KPI_FORM2+KPI_FORM3+KPI_FORM4+KPI_FORM5+KPI_FORM6+KPI_FORM7+KPI_PAY_N+KPI_FORM9+KPI_HERE_N+KPI_SALES_N+KPI_BS_N+KPI_WORK_N)AS TOTAL_POINT 
+	FROM(
+    SELECT	
+        KPI_SEQ
+		,COMPANY
+		,LICENSEE
+		,CEO_NAME
+		,BUSINESS_TYPE
+		,BS_TYPE
+		,CITY_ZONE
+		,KPI_FORM1
+		,KPI_FORM2
+		,KPI_FORM3
+		,KPI_FORM4
+		,KPI_FORM5
+		,KPI_FORM6
+		,KPI_FORM7
+		,KPI_FORM8
+		,KPI_FORM8_PAY
+		,KPI_FORM9
+		,KPI_FORM10
+		,KPI_FORM10_PAY
+		,KPI_FORM11
+		,KPI_FORM11_PAY
+		,KPI_FORM12
+		,KPI_FORM12_PAY
+		,KPI_FORM13
+		,KPI_FORM14
+		,KPI_FORM15
+		,KPI_FORM3_1
+		,KPI_FORM3_3
+		,KPI_FORM3_2
+		,KPI_FORM6_1
+		,KPI_FORM6_2
+		,KPI_FORM6_3
+		,KPI_FORM13_1 
+		,KPI_FORM13_2 
+		,KPI_FORM13_3 
+		,KPI_FORM13_4 		
+		,KPI_STEP
+		,LOAD_DATE
+		,END_DATE
+   ,(select SERVICE_NUM
+    from(
+    select SERVICE_NUM,
+     abs ( b.SERVICE_STANDARD - a.KPI_FORM8_PAY),
+     ROW_NUMBER() OVER (ORDER BY ABS(b.SERVICE_STANDARD -  a.KPI_FORM8_PAY)) rn
+     from social_info_master a,
+		serviceinfo_code_standard b
+        where 1=1		
+		and (b.GRP_CD ='SERVICE_PAY' and a.BUSINESS_TYPE = b.SERVICE_TYPE)
+		AND KPI_SEQ =#{kpi_seq}
+        )
+        where rn =1) as KPI_PAY_N
+         ,(select SERVICE_NUM
+     from(       
+      select SERVICE_NUM,
+      ABS(b.SERVICE_STANDARD  - MOD(a.KPI_FORM11_PAY , a.KPI_FORM10_PAY)),
+      ROW_NUMBER() OVER (ORDER BY ABS(b.SERVICE_STANDARD -  MOD(a.KPI_FORM11_PAY , a.KPI_FORM10_PAY))) rn
+       from social_info_master a,
+		serviceinfo_code_standard b
+		where 1=1	
+		and (b.GRP_CD ='SERVICE_WORK_SALES' and a.BUSINESS_TYPE = b.SERVICE_TYPE)
+		AND KPI_SEQ =#{kpi_seq}
+             )
+        where rn =1) as KPI_WORK_N
+         ,( select SERVICE_NUM
+          from(
+        select SERVICE_NUM,
+     abs ( b.SERVICE_STANDARD - a.KPI_FORM10_PAY),
+     ROW_NUMBER() OVER (ORDER BY ABS(b.SERVICE_STANDARD -  a.KPI_FORM10_PAY)) rn        
+        from social_info_master a,
+		serviceinfo_code_standard b
+		where 1=1		
+		and (b.GRP_CD ='SERVICE_HIRE' and a.BUSINESS_TYPE = b.SERVICE_TYPE)
+		AND KPI_SEQ =#{kpi_seq} 
+             )
+        where rn =1) as  KPI_HERE_N 
+     ,(select SERVICE_NUM
+               from(
+        select SERVICE_NUM,
+         abs ( b.SERVICE_STANDARD - a.KPI_FORM11_PAY),
+         ROW_NUMBER() OVER (ORDER BY ABS(b.SERVICE_STANDARD -  a.KPI_FORM11_PAY)) rn  
+		from social_info_master a,
+		serviceinfo_code_standard b
+		where 1=1		
+		and (b.GRP_CD ='SERVICE_SALES' and a.BUSINESS_TYPE = b.SERVICE_TYPE)
+		AND KPI_SEQ =#{kpi_seq}
+             )
+        where rn =1) as KPI_SALES_N   
+   ,(select SERVICE_NUM
+     from(
+     select SERVICE_NUM,
+      abs ( b.SERVICE_STANDARD - a.KPI_FORM12_PAY),
+       ROW_NUMBER() OVER (ORDER BY ABS(b.SERVICE_STANDARD -  a.KPI_FORM12_PAY)) rn  
+		from social_info_master a,
+		serviceinfo_code_standard b
+		where 1=1	
+		and (b.GRP_CD ='SERVICE_BS_SALES' and a.BUSINESS_TYPE = b.SERVICE_TYPE)
+        AND KPI_SEQ =#{kpi_seq}
+             )
+        where rn =1) as  KPI_BS_N
+        from social_info_master
+		where 1=1
+		 order by KPI_SEQ desc 
+		)cnt 
+		 where 1=1
+		 AND END_DATE IS NULL
+		 AND KPI_SEQ  =#{kpi_seq} 
+		 order by KPI_SEQ desc	
+	     ]]>
+	</select>
+	<select id="getStepResult" parameterType="int" resultType="SocialCommand">	
+	<![CDATA[ 
+	   select 
+		cnt.KPI_SEQ
+		,cnt.COMPANY
+		,cnt.LICENSEE
+		,cnt.CEO_NAME
+		,cnt.BUSINESS_TYPE
+		,cnt.BS_TYPE
+		,cnt.CITY_ZONE
+		,cnt.KPI_FORM1
+		,cnt.KPI_FORM2
+		,cnt.KPI_FORM3
+		,cnt.KPI_FORM4
+		,cnt.KPI_FORM5
+		,cnt.KPI_FORM6
+		,cnt.KPI_FORM7
+		,cnt.KPI_FORM8
+		,cnt.KPI_FORM8_PAY
+		,cnt.KPI_FORM9
+		,cnt.KPI_FORM10
+		,cnt.KPI_FORM10_PAY
+		,cnt.KPI_FORM11
+		,cnt.KPI_FORM11_PAY
+		,cnt.KPI_FORM12
+		,cnt.KPI_FORM12_PAY
+		,cnt.KPI_FORM13
+		,cnt.KPI_FORM14
+		,cnt.KPI_FORM15
+		,cnt.KPI_FORM3_1
+		,cnt.KPI_FORM3_3
+		,cnt.KPI_FORM3_2
+		,cnt.KPI_FORM6_1
+		,cnt.KPI_FORM6_2
+		,cnt.KPI_FORM6_3
+		,cnt.KPI_FORM13_1 
+		,cnt.KPI_FORM13_2 
+		,cnt.KPI_FORM13_3 
+		,cnt.KPI_FORM13_4 		
+		,cnt.KPI_STEP
+		,TO_CHAR(TO_DATE(LOAD_DATE,'YYYY-MM-DD.hh24mi'),'YYYY-MM-DD')as LOAD_DATE
+		,cnt.END_DATE
+		,KPI_WORK_N
+		,KPI_PAY_N
+		,KPI_HERE_N
+		,KPI_SALES_N
+		,KPI_BS_N
+,(KPI_FORM1+KPI_FORM2+KPI_FORM3+KPI_FORM4+KPI_FORM5+KPI_FORM6+KPI_FORM7+KPI_PAY_N+KPI_FORM9+KPI_HERE_N+KPI_SALES_N+KPI_BS_N+KPI_WORK_N+KPI_FORM13)AS TOTAL_POINT 
+	FROM(
+    SELECT	
+        KPI_SEQ
+		,COMPANY
+		,LICENSEE
+		,CEO_NAME
+		,BUSINESS_TYPE
+		,BS_TYPE
+		,CITY_ZONE
+		,KPI_FORM1
+		,KPI_FORM2
+		,KPI_FORM3
+		,KPI_FORM4
+		,KPI_FORM5
+		,KPI_FORM6
+		,KPI_FORM7
+		,KPI_FORM8
+		,KPI_FORM8_PAY
+		,KPI_FORM9
+		,KPI_FORM10
+		,KPI_FORM10_PAY
+		,KPI_FORM11
+		,KPI_FORM11_PAY
+		,KPI_FORM12
+		,KPI_FORM12_PAY
+		,KPI_FORM13
+		,KPI_FORM14
+		,KPI_FORM15
+		,KPI_FORM3_1
+		,KPI_FORM3_3
+		,KPI_FORM3_2
+		,KPI_FORM6_1
+		,KPI_FORM6_2
+		,KPI_FORM6_3
+		,KPI_FORM13_1 
+		,KPI_FORM13_2 
+		,KPI_FORM13_3 
+		,KPI_FORM13_4 		
+		,KPI_STEP
+		,LOAD_DATE
+		,END_DATE
+   ,(select SERVICE_NUM
+    from(
+    select SERVICE_NUM,
+     abs ( b.SERVICE_STANDARD - a.KPI_FORM8_PAY),
+     ROW_NUMBER() OVER (ORDER BY ABS(b.SERVICE_STANDARD -  a.KPI_FORM8_PAY)) rn
+     from social_info_master a,
+		serviceinfo_code_standard b
+        where 1=1	
+		and (b.GRP_CD ='SERVICE_PAY' and a.BUSINESS_TYPE = b.SERVICE_TYPE)
+		AND KPI_SEQ =#{kpi_seq}
+        )
+        where rn =1) as KPI_PAY_N
+         ,(select SERVICE_NUM
+     from(       
+      select SERVICE_NUM,
+      ABS(b.SERVICE_STANDARD  - MOD(a.KPI_FORM11_PAY , a.KPI_FORM10_PAY)),
+      ROW_NUMBER() OVER (ORDER BY ABS(b.SERVICE_STANDARD -  MOD(a.KPI_FORM11_PAY , a.KPI_FORM10_PAY))) rn
+       from social_info_master a,
+		serviceinfo_code_standard b
+		where 1=1		 		
+		and (b.GRP_CD ='SERVICE_WORK_SALES' and a.BUSINESS_TYPE = b.SERVICE_TYPE)
+		AND KPI_SEQ =#{kpi_seq}
+             )
+        where rn =1) as KPI_WORK_N
+         ,( select SERVICE_NUM
+          from(
+        select SERVICE_NUM,
+     abs ( b.SERVICE_STANDARD - a.KPI_FORM10_PAY),
+     ROW_NUMBER() OVER (ORDER BY ABS(b.SERVICE_STANDARD -  a.KPI_FORM10_PAY)) rn        
+        from social_info_master a,
+		serviceinfo_code_standard b
+		where 1=1		
+		and (b.GRP_CD ='SERVICE_HIRE' and a.BUSINESS_TYPE = b.SERVICE_TYPE)
+		AND KPI_SEQ =#{kpi_seq} 
+             )
+        where rn =1) as  KPI_HERE_N 
+     ,(select SERVICE_NUM
+               from(
+        select SERVICE_NUM,
+         abs ( b.SERVICE_STANDARD - a.KPI_FORM11_PAY),
+         ROW_NUMBER() OVER (ORDER BY ABS(b.SERVICE_STANDARD -  a.KPI_FORM11_PAY)) rn  
+		from social_info_master a,
+		serviceinfo_code_standard b
+		where 1=1		
+		and (b.GRP_CD ='SERVICE_SALES' and a.BUSINESS_TYPE = b.SERVICE_TYPE)
+		AND KPI_SEQ =#{kpi_seq}
+             )
+        where rn =1) as KPI_SALES_N   
+   ,(select SERVICE_NUM
+     from(
+     select SERVICE_NUM,
+      abs ( b.SERVICE_STANDARD - a.KPI_FORM12_PAY),
+       ROW_NUMBER() OVER (ORDER BY ABS(b.SERVICE_STANDARD -  a.KPI_FORM12_PAY)) rn  
+		from social_info_master a,
+		serviceinfo_code_standard b
+		where 1=1	
+		and (b.GRP_CD ='SERVICE_BS_SALES' and a.BUSINESS_TYPE = b.SERVICE_TYPE)
+        AND KPI_SEQ =#{kpi_seq}
+             )
+        where rn =1) as  KPI_BS_N
+        from social_info_master
+		where 1=1
+		 order by KPI_SEQ desc 
+		)cnt 
+		 where 1=1
+		 AND KPI_SEQ  =#{kpi_seq} 
+		 order by KPI_SEQ desc
+	]]>	
+	</select>	
+   <update id="updateStep2" parameterType="socialCommand">	
+      <![CDATA[  
+          UPDATE SOCIAL_INFO_MASTER
+        SET
+         KPI_FORM1          = #{kpi_form1}
+        ,KPI_FORM2          = #{kpi_form2}
+        ,KPI_STEP           = '2'
+        WHERE KPI_SEQ  = #{kpi_seq}
+        AND END_DATE IS NULL
+     ]]>
+     </update> 
+    <update id="updateStep3" parameterType="socialCommand">	
+      <![CDATA[  
+          UPDATE SOCIAL_INFO_MASTER
+        SET
+         KPI_FORM3      = (#{kpi_form3_1}+#{kpi_form3_2}+#{kpi_form3_3})
+        ,KPI_FORM3_1    = #{kpi_form3_1}
+        ,KPI_FORM3_2    = #{kpi_form3_2}
+        ,KPI_FORM3_3    = #{kpi_form3_3}
+        ,KPI_STEP           = '3'
+        WHERE KPI_SEQ  = #{kpi_seq}
+        AND END_DATE IS NULL        
+     ]]>
+     </update>
+    <update id="updateStep4" parameterType="socialCommand">	
+      <![CDATA[  
+          UPDATE SOCIAL_INFO_MASTER
+        SET
+         KPI_FORM4   = #{kpi_form4}
+        ,KPI_FORM5    = #{kpi_form5}
+        ,KPI_STEP           = '4'
+        WHERE KPI_SEQ  = #{kpi_seq}
+        AND END_DATE IS NULL        
+     ]]>
+     </update>  
+    <update id="updateStep5" parameterType="socialCommand">	
+      <![CDATA[  
+          UPDATE SOCIAL_INFO_MASTER
+        SET
+         KPI_FORM6   =  (#{kpi_form6_1}+#{kpi_form6_2}+#{kpi_form6_3})
+  		,KPI_FORM6_1   =  #{kpi_form6_1}
+		,KPI_FORM6_2   =  #{kpi_form6_2}
+		,KPI_FORM6_3   =  #{kpi_form6_3}   
+        ,KPI_STEP           = '5'
+        WHERE KPI_SEQ  = #{kpi_seq}
+        AND END_DATE IS NULL      
+     ]]>
+     </update> 
+     <update id="updateStep6" parameterType="socialCommand">	
+      <![CDATA[  
+          UPDATE SOCIAL_INFO_MASTER
+        SET
+         KPI_FORM7   =  #{kpi_form7}  
+        ,KPI_STEP           = '6'
+        WHERE KPI_SEQ  = #{kpi_seq}
+        AND END_DATE IS NULL      
+     ]]>
+     </update>  
+     <update id="updateStep7" parameterType="socialCommand">	
+      <![CDATA[  
+          UPDATE SOCIAL_INFO_MASTER
+        SET
+         KPI_FORM8_PAY   = REPLACE(#{kpi_form8_pay}, ',', '' )
+        ,KPI_FORM9   =  #{kpi_form9}
+        ,KPI_STEP           = '7'
+        WHERE KPI_SEQ  = #{kpi_seq}
+        AND END_DATE IS NULL      
+     ]]>
+     </update>
+     <update id="updateStep8" parameterType="socialCommand">	
+      <![CDATA[  
+          UPDATE SOCIAL_INFO_MASTER
+        SET
+          KPI_FORM10_PAY         = REPLACE(  #{kpi_form10_pay}, ',', '' )
+        , KPI_FORM11_PAY         = REPLACE(  #{kpi_form11_pay}, ',', '' )
+        , KPI_FORM12_PAY         = REPLACE(  #{kpi_form12_pay}, ',', '' ) 
+        ,KPI_STEP           = '8'
+        WHERE KPI_SEQ  = #{kpi_seq}
+        AND END_DATE IS NULL          
+     ]]>
+     </update> 
+    <update id="updateStep9" parameterType="socialCommand">	
+      <![CDATA[  
+       UPDATE SOCIAL_INFO_MASTER
+        SET
+         KPI_FORM13    = ( #{kpi_form13_1} + #{kpi_form13_2} + #{kpi_form13_3} + #{kpi_form13_4})
+		,KPI_FORM13_1  =  #{kpi_form13_1}
+		,KPI_FORM13_2  =  #{kpi_form13_2}
+		,KPI_FORM13_3  =  #{kpi_form13_3}
+		,KPI_FORM13_4  =  #{kpi_form13_4}       
+        ,KPI_FORM8      = #{kpi_pay_n}
+        ,KPI_FORM10     = #{kpi_here_n}
+        ,KPI_FORM11     = #{kpi_sales_n}
+        ,KPI_FORM12     = #{kpi_bs_n}  
+        ,KPI_FORM15     = #{kpi_work_n} 
+        ,KPI_TOTAL      = (#{total_point} + #{kpi_form13_1} + #{kpi_form13_2} + #{kpi_form13_3} + #{kpi_form13_4})  
+        ,KPI_STEP       = '9'
+        ,END_DATE =  TO_CHAR(SYSDATE,'YYYY-MM-DD.hh24mi')
+        WHERE KPI_SEQ  = #{kpi_seq}      
+     ]]>
+     </update>                                   		
+   <insert id="insertSocial" parameterType="map">
+		INSERT INTO SOCIAL_INFO_MASTER
+		(kpi_seq,LOAD_DATE,KPI_STEP) 
+		VALUES(
+		SEQ_SOCIAL_KPI.NEXTVAL,
+		TO_CHAR(SYSDATE,'YYYY-MM-DD.hh24mi'),
+		'0'
+		)
+   </insert>
+      <select id="chartAllSocialList" parameterType="map" resultType="socialCommand">
+
+		select RESULT
+		from(
+		SELECT TOTAL_AVERAGE AS RESULT
+		FROM social_total_result a, social_info_master b
+		where 1=1
+		AND TOTAL_CODE ='4'
+		AND TOTAL_TYPE = b.BUSINESS_TYPE
+		AND KPI_STEP ='9'
+		AND END_DATE IS NOT NULL
+		AND KPI_SEQ  =  #{kpi_seq} 
+		order by KPI_SEQ desc 
+		)cnt
+		UNION ALL
+        select RESULT
+		from(
+       SELECT  TOTAL_AVERAGE AS RESULT
+		FROM social_total_result
+		where 1=1
+		AND TOTAL_CODE ='3'
+		AND TOTAL_TYPE= '1'
+        )cnt
+		UNION ALL
+        select  RESULT
+		from(
+		SELECT trunc(KPI_FORM1+KPI_FORM2+KPI_FORM3+KPI_FORM4+KPI_FORM5+KPI_FORM6+KPI_FORM7+KPI_FORM8+KPI_FORM9,1) AS RESULT
+		FROM SOCIAL_INFO_MASTER
+		WHERE 1=1
+		AND KPI_STEP ='9'
+		AND END_DATE IS NOT NULL
+		AND KPI_SEQ  = #{kpi_seq} 
+		order by KPI_SEQ desc 
+		)cnt
+		</select>
+	  <select id="chartAllTotal" parameterType="map" resultType="socialCommand">	
+	select RESULT
+		from(
+		SELECT TOTAL_AVERAGE AS RESULT
+		FROM social_total_result a, social_info_master b
+		where 1=1
+		AND TOTAL_CODE ='6'
+		AND TOTAL_TYPE = b.BUSINESS_TYPE
+		AND KPI_STEP ='9'
+		AND END_DATE IS NOT NULL
+		AND KPI_SEQ  =    #{kpi_seq} 
+		order by KPI_SEQ desc 
+		)cnt
+       UNION ALL 
+    select RESULT
+		from(   
+    SELECT TOTAL_AVERAGE AS RESULT
+		FROM social_total_result
+		where 1=1
+		AND TOTAL_CODE ='5'
+		AND TOTAL_TYPE= '1'
+		)cnt
+       UNION ALL 
+     	select RESULT
+		from(
+		SELECT trunc(KPI_FORM10+KPI_FORM11+KPI_FORM12+KPI_FORM15,1) AS RESULT
+		FROM SOCIAL_INFO_MASTER
+		WHERE 1=1
+		AND KPI_STEP ='9'
+		AND END_DATE IS NOT NULL
+		AND KPI_SEQ  = #{kpi_seq} 
+		order by KPI_SEQ desc
+		)cnt
+		</select>
+	 <select id="chartAllMyTotal" parameterType="map" resultType="socialCommand">
+
+	select RESULT
+		from(
+		SELECT TOTAL_AVERAGE AS RESULT
+		FROM social_total_result a, social_info_master b
+		where 1=1
+		AND TOTAL_CODE ='8'
+		AND TOTAL_TYPE = b.BUSINESS_TYPE
+		AND KPI_STEP ='9'
+		AND END_DATE IS NOT NULL
+		AND KPI_SEQ  =   #{kpi_seq} 
+		order by KPI_SEQ desc
+		)cnt
+        UNION ALL 
+    	select RESULT
+		from(    
+ 	SELECT TOTAL_AVERAGE AS RESULT
+		FROM social_total_result
+		where 1=1
+		AND TOTAL_CODE ='7'
+		AND TOTAL_TYPE= '1'
+       		)cnt
+        UNION ALL  
+  	select RESULT
+		from(
+		SELECT trunc(KPI_FORM13,1) AS RESULT
+		FROM SOCIAL_INFO_MASTER
+		WHERE 1=1
+		AND KPI_STEP ='9'
+		AND END_DATE IS NOT NULL
+		AND KPI_SEQ  =   #{kpi_seq} 
+		order by KPI_SEQ desc 
+		)cnt
+	 </select>	
+	   <select id="chartRaderSocial" parameterType="map" resultType="socialCommand">
+	select RESULT
+		from(
+		SELECT (KPI_FORM1 * 20) AS RESULT
+		FROM SOCIAL_INFO_MASTER
+		WHERE 1=1
+		AND KPI_STEP ='9'
+		AND END_DATE IS NOT NULL
+		AND KPI_SEQ  =  #{kpi_seq}
+		order by KPI_SEQ desc 
+		)cnt
+		UNION ALL
+	select RESULT
+		from(
+		SELECT (KPI_FORM2 * 20) AS RESULT
+		FROM SOCIAL_INFO_MASTER
+		WHERE 1=1
+		AND KPI_STEP ='9'
+		AND END_DATE IS NOT NULL
+		AND KPI_SEQ  =   #{kpi_seq}
+		order by KPI_SEQ desc 
+		)cnt
+		UNION ALL
+	select RESULT
+		from(
+		SELECT trunc(KPI_FORM3 * 10,1)  AS RESULT
+		FROM SOCIAL_INFO_MASTER
+		WHERE 1=1
+		AND KPI_STEP ='9'
+		AND END_DATE IS NOT NULL
+		AND KPI_SEQ  =   #{kpi_seq}
+		order by KPI_SEQ desc 
+		)cnt
+		UNION ALL
+	select RESULT
+		from(
+		SELECT (KPI_FORM4 * 20) AS RESULT
+		FROM SOCIAL_INFO_MASTER
+		WHERE 1=1
+		AND KPI_STEP ='9'
+		AND END_DATE IS NOT NULL
+		AND KPI_SEQ  =   #{kpi_seq}
+		order by KPI_SEQ desc 
+		)cnt
+		UNION ALL
+	select RESULT
+		from(
+		SELECT (KPI_FORM5 * 20) AS RESULT
+		FROM SOCIAL_INFO_MASTER
+		WHERE 1=1
+		AND KPI_STEP ='9'
+		AND END_DATE IS NOT NULL
+		AND KPI_SEQ  =   #{kpi_seq}
+		order by KPI_SEQ desc 
+		)cnt
+		UNION ALL
+	select RESULT
+		from(
+		SELECT trunc(KPI_FORM6 * 10,1)  AS RESULT
+		FROM SOCIAL_INFO_MASTER
+		WHERE 1=1
+		AND KPI_STEP ='9'
+		AND END_DATE IS NOT NULL
+		AND KPI_SEQ  =   #{kpi_seq}
+		order by KPI_SEQ desc 
+		)cnt
+		UNION ALL
+	select RESULT
+		from(
+		SELECT (KPI_FORM7 * 20) AS RESULT
+		FROM SOCIAL_INFO_MASTER
+		WHERE 1=1
+		AND KPI_STEP ='9'
+		AND END_DATE IS NOT NULL
+		AND KPI_SEQ  =   #{kpi_seq}
+		order by KPI_SEQ desc 
+		)cnt
+		UNION ALL
+	select RESULT
+		from(
+		SELECT (KPI_FORM8 * 10) AS RESULT
+		FROM SOCIAL_INFO_MASTER
+		WHERE 1=1
+		AND KPI_STEP ='9'
+		AND END_DATE IS NOT NULL
+		AND KPI_SEQ  =   #{kpi_seq}
+		order by KPI_SEQ desc 
+		)cnt
+		UNION ALL
+	select RESULT
+		from(
+		SELECT (KPI_FORM9 * 20) AS RESULT
+		FROM SOCIAL_INFO_MASTER
+		WHERE 1=1
+		AND KPI_STEP ='9'
+		AND END_DATE IS NOT NULL
+		AND KPI_SEQ  =   #{kpi_seq}
+		order by KPI_SEQ desc 
+		)cnt
+		UNION ALL
+	select RESULT
+		from(
+		SELECT ( KPI_FORM10 * 10) AS RESULT
+		FROM SOCIAL_INFO_MASTER
+		WHERE 1=1
+		AND KPI_STEP ='9'
+		AND END_DATE IS NOT NULL
+		AND KPI_SEQ  =   #{kpi_seq}
+		order by KPI_SEQ desc 
+		)cnt
+		UNION ALL
+	select RESULT
+		from(
+		SELECT (KPI_FORM11 * 10) AS RESULT
+		FROM SOCIAL_INFO_MASTER
+		WHERE 1=1
+		AND KPI_STEP ='9'
+		AND END_DATE IS NOT NULL
+		AND KPI_SEQ  =   #{kpi_seq}
+		order by KPI_SEQ desc 
+		)cnt
+		UNION ALL
+	select RESULT
+		from(
+		SELECT ( KPI_FORM12 * 20)  AS RESULT
+		FROM SOCIAL_INFO_MASTER
+		WHERE 1=1
+		AND KPI_STEP ='9'
+		AND END_DATE IS NOT NULL
+		AND KPI_SEQ  =   #{kpi_seq}
+		order by KPI_SEQ desc 
+		)cnt
+		UNION ALL
+	select RESULT
+		from(
+		SELECT (KPI_FORM15 * 20) AS RESULT
+		FROM SOCIAL_INFO_MASTER
+		WHERE 1=1
+		AND KPI_STEP ='9'
+		AND END_DATE IS NOT NULL
+		AND KPI_SEQ  =   #{kpi_seq}
+		order by KPI_SEQ desc 
+		)cnt
+		UNION ALL
+	select RESULT
+		from(
+		SELECT trunc(KPI_FORM13 * 10,1) AS RESULT
+		FROM SOCIAL_INFO_MASTER
+		WHERE 1=1
+		AND KPI_STEP ='9'
+		AND END_DATE IS NOT NULL
+		AND KPI_SEQ  =  #{kpi_seq}
+		order by KPI_SEQ desc 
+		)cnt 	   
+	   
+	   </select>
+	 		
+</mapper>
