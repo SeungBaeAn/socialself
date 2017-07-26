@@ -47,7 +47,8 @@
                 <option value="1" >전체 기업</option>    
                 <option value="9">완료 기업</option>    
                 <option value="8" >미완료 기업</option>      
-          </select>          
+          </select>
+           <a href="#" class="btn bg_orange innerBtn" >검색 </a>          
         </td> 
        </tr>
        </table>

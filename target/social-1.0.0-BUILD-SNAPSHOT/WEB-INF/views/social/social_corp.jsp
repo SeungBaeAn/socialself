@@ -11,7 +11,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link href="../css/common.css" rel="stylesheet">
   <link href="../css/jquery.mCustomScrollbar.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/board.css" type="text/css">
   <script src="../js/jquery-1.12.0.min.js"></script>
   <script src="../js/jquery.mCustomScrollbar.js"></script>
   <script src="../js/TweenMax.min.js"></script>
@@ -40,23 +39,20 @@
       <div class="result_tit">
         <h2 class="tit_page">자가진단 참여기업 리스트<small>  Corporation List</small></h2>
        	<form action="list.do" id="search" method="get">
-		<ul class="search">
-			<li>
-				<select name="keyfield" id="keyfield">
-					<option value="title">제목</option>
-					<option value="writer">이름</option>
-					<option value="content">내용</option>
-					<option value="all">전체</option>
-				</select>
-			</li>
-			<li>
-				<input type="text" size="16" name="keyword" id="keyword">
-			</li>
-			<li>
-				<input type="submit" value="찾기">
-			</li>
-		</ul>
-	</form>
+       <table  style="text-align:left;border:0;" >
+       <tr>
+         <td class="alignLeft">
+              <select class="ui-select" name="keyfield" id="keyfield" required="required">
+                <option value="">선택</option>
+                <option value="1" >전체 기업</option>    
+                <option value="9">완료 기업</option>    
+                <option value="8" >미완료 기업</option>      
+          </select>
+           <a href="#" class="btn bg_orange serchBtn" >검색 </a>          
+        </td> 
+       </tr>
+       </table>
+	 </form>
       </div>
     <input id="KPI_SEQ" type="hidden" name="KPI_SEQ"  value="{{_data.KPI_SEQ}}"></input>
    	<c:if test="${count == 0}">
