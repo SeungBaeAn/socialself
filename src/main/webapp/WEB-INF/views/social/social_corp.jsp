@@ -22,10 +22,10 @@
   <script src="../js/Chart.Radar.js"></script>
    <script src="../js/utils.js"></script>
   <script src="../js/Chart.bundle.js"></script>
+    <script type="text/javascript" src="../js/board.js"></script>
 
 </head>
     <body>
-    <form>
         	<header class="header">
 		      <div class="inner">
 		  	    <h1><strong class="txt_blue">SE 자가진단 KIT</strong> </h1>
@@ -38,7 +38,20 @@
 	  <div class="inner_motion full_width">
       <div class="result_tit">
         <h2 class="tit_page">자가진단 참여기업 리스트<small>  Corporation List</small></h2>
-       
+       	<form action="list.do" id="search" method="get">
+       <table  style="text-align:left;border:0;" >
+       <tr>
+         <td class="alignLeft">
+              <select class="ui-select" name="keyfield" id="keyfield" required="required">
+                <option value="">선택</option>
+                <option value="1" >전체 기업</option>    
+                <option value="9">완료 기업</option>    
+                <option value="8" >미완료 기업</option>      
+          </select>          
+        </td> 
+       </tr>
+       </table>
+	 </form>
       </div>
     <input id="KPI_SEQ" type="hidden" name="KPI_SEQ"  value="{{_data.KPI_SEQ}}"></input>
    	<c:if test="${count == 0}">
@@ -88,6 +101,5 @@
 	</c:if>
       </div>
       </section>
-      </form>
       </body>
  </html>
