@@ -419,5 +419,44 @@ public class SocialMainController {
 
 	         gson.toJson(rlist);
 	         return gson.toJson(rlist);
-	    }	 	    
+	    }
+	        	    
+	    
+		@RequestMapping("/corpList.do")
+		public ModelAndView corpList(@RequestParam(value="pageNum",defaultValue="1") int currentPage) {
+			
+			if(log.isDebugEnabled()) {
+				log.debug("pageNum : " + currentPage);
+			}
+			
+			int count = socialService.getCropCount();
+			
+			PagingUtil page = new PagingUtil(currentPage,count,10,10,"corpList.do");
+			
+			List<SocialCommand> list = null;
+			if(count > 0) {
+				
+				Map<String,Object> map = new HashMap<String,Object>();
+				
+				map.put("start", page.getStartCount());
+				map.put("end", page.getEndCount());
+				
+				list = socialService.socialCorpList(map);
+			} else {
+				list = Collections.emptyList();
+			}
+			
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("/social/social_corp");
+			mav.addObject("count", count);
+			mav.addObject("list",list);
+			mav.addObject("pagingHtml",page.getPagingHtml());
+			
+			System.out.println("socialCommand==count===========:"+count);
+			
+			return mav;
+		}    
+	    
+	    
+	    
 }

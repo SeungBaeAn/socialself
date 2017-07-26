@@ -13,7 +13,7 @@ import kr.spring.member.domain.MemberCommand;
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
 
-	//Reosurce로 인해 MemberMapper 자유롭게 이제 쓸수 있음
+	//
 	@Resource(name="memberMapper")
 	MemberMapper memberMapper;
 	

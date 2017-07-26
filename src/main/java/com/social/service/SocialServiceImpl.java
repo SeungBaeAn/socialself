@@ -106,4 +106,13 @@ public class SocialServiceImpl implements SocialService{
 	public List<SocialCommand> chartRaderSocial(Map<String,Object> map) {
 		return socialMapper.chartRaderSocial(map);
 	}	
+	
+	@Override
+	public List<SocialCommand> socialCorpList(Map<String,Object> map) {
+		return socialMapper.socialCorpList(map);
+	}
+	@Override
+	public int getCropCount() {
+		return socialMapper.getCropCount();
+    }
 }

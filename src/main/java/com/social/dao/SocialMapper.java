@@ -19,7 +19,8 @@ public interface  SocialMapper {
 //	public List<SocialCommand> getMemberList(Map<String,Object> map);
 //	public List<SocialCommand> getStepList1(Map<String,Object> map);
 	public SocialCommand getStepList1(Map<String,Object> map);
-	
+	@Select("SELECT count(*) FROM SOCIAL_INFO_MASTER WHERE KPI_STEP between '1' and '9'")
+	public int getCropCount();
 	public SocialCommand getStepList2(int kpi_seq);
 	public SocialCommand getStepList3(int kpi_seq);
 	public SocialCommand getStepResult(int kpi_seq);	
@@ -48,4 +49,7 @@ public interface  SocialMapper {
 	public List<SocialCommand> chartAllTotal(Map<String,Object> map);
 	public List<SocialCommand> chartAllMyTotal(Map<String,Object> map);
 	public List<SocialCommand> chartRaderSocial(Map<String,Object> map);
+	public List<SocialCommand> socialCorpList(Map<String,Object> map);
+	
+	
 }

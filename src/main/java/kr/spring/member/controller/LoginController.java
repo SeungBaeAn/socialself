@@ -32,7 +32,7 @@ public class LoginController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String form() {
-		return "loginForm";
+		return "adminLogin";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
@@ -63,7 +63,7 @@ public class LoginController {
 			   
 				session.setAttribute("userId", memberCommand.getId());
 				if(memberCommand.getId().equals("admin")){
-					return  "redirect:/self/step.do";	
+					return  "redirect:/self/corpList.do";	
 				}else{
 				return  "redirect:/self/step.do";
 				}
