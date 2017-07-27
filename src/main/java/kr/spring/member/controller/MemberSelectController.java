@@ -13,7 +13,7 @@ import kr.spring.member.service.MemberService;
 
 @Controller
 public class MemberSelectController {
-	//肺弊贸府
+	
 	private Logger log = Logger.getLogger(this.getClass());
 	
 	@Resource(name="memberService")
@@ -27,7 +27,7 @@ public class MemberSelectController {
 		}
 		
 		MemberCommand member = memberService.getMember(id);
-								//view捞抚		加己疙	加己蔼
+								
 		return new ModelAndView("selectDetail","member",member);
 	}
 }

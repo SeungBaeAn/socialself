@@ -112,7 +112,24 @@ public class SocialServiceImpl implements SocialService{
 		return socialMapper.socialCorpList(map);
 	}
 	@Override
+	public List<SocialCommand> CorpSelList(Map<String,Object> map) {
+		return socialMapper.CorpSelList(map);
+	}
+	@Override
+	public List<SocialCommand> eventList(Map<String,Object> map) {
+		return socialMapper.eventList(map);
+	}
+	@Override
 	public int getCropCount() {
 		return socialMapper.getCropCount();
     }
+	@Override
+	public int getEventCount() {
+		return socialMapper.getEventCount();
+    }
+	@Override
+	public int getSelCount() {
+		return socialMapper.getSelCount();
+	}
+	
 }

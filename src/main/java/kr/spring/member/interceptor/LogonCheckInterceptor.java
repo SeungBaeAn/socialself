@@ -14,7 +14,7 @@ public class LogonCheckInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		
 		if(log.isDebugEnabled()) {
-			log.debug("===LogonCheckInterceptor ����===");
+			log.debug("===LogonCheckInterceptor===");
 		}
 		
 

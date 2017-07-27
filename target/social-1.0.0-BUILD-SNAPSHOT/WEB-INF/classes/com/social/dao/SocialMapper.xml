@@ -920,15 +920,70 @@
                 ELSE '0' 
             END)KPI_STEP_NM
 		FROM SOCIAL_INFO_MASTER
-	    WHERE
-	     KPI_STEP between '1' and '9'
-	    ORDER BY  LOAD_DATE DESC)
+		where 1=1
+	    and KPI_STEP between '1' and '9'
+   	    ORDER BY  LOAD_DATE DESC)
 	    ]]>	    	    
 		<![CDATA[
 		WHERE rnum >= #{start} AND rnum <= #{end}
 		]]>	    
 	    </select>  
 	   
-	   
+	    <select id="CorpSelList" parameterType="map" resultType="socialCommand">
+	  <![CDATA[
+	SELECT   
+            rnum,
+            KPI_STEP,
+			COMPANY,
+            kpi_seq,
+            BUSINESS_TYPE,
+            BS_TYPE,
+		 KPI_TOTAL,
+		 LOAD_DATE,
+         KPI_TOTAL_NUM,
+          EVENT_USE,
+          EVENT_USE_YN,
+          END_DT,
+          EVENT_ADDR,
+          KPI_STEP_NM
+    FROM (SELECT      
+       rownum rnum,
+		   KPI_STEP,
+			COMPANY,
+              kpi_seq,
+			(SELECT GRP_NM FROM SERVICEINFO_CODE_STANDARD WHERE GRP_CD = 'SERVICE_CODE' AND CD = BUSINESS_TYPE) AS BUSINESS_TYPE,
+		 BS_TYPE,
+		 KPI_TOTAL,
+		 LOAD_DATE,
+         DECODE(KPI_TOTAL,null,'0',KPI_TOTAL)KPI_TOTAL_NUM,
+		 EVENT_USE,
+        DECODE(EVENT_USE,null, 'N',EVENT_USE)EVENT_USE_YN,
+        DECODE(END_DATE,null, '',END_DATE)END_DT,
+         EVENT_ADDR,		    
+		    ( CASE KPI_STEP  
+                WHEN '1' THEN  '1.회사 기본정보'
+                WHEN '2' THEN  '2.사회적 미션의 관리'  
+                WHEN '3' THEN  '3.주사업활동의 사회적 가치' 
+				WHEN '4' THEN  '4.사회적경제 생태계 구축노력' 
+				WHEN '5' THEN  '5.이윤의 사회목적 재투자'  
+				WHEN '6' THEN  '6.운영의 민주성'  
+				WHEN '7' THEN  '7.근로자 지향성' 
+				WHEN '8' THEN  '8.기업활동에서의 혁신성' 
+				WHEN '9' THEN  '완료' 	 							 					 				 					 					 
+                ELSE '0' 
+            END)KPI_STEP_NM
+		FROM SOCIAL_INFO_MASTER
+		where 1=1
+		<if test='selfield != null'>	
+	    and KPI_STEP = 9
+	    </if>	   
+	    ORDER BY  LOAD_DATE DESC
+	    )
+	    ]]>	    	    
+		<![CDATA[
+		WHERE rnum >= #{start, jdbcType=VARCHAR} AND rnum <= #{end, jdbcType=VARCHAR}
+		]]>	    
+	    </select>  
+	   	   
 	 		
 </mapper>

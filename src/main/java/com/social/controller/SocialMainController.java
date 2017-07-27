@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -492,6 +493,75 @@ public class SocialMainController {
 			return mav;
 		}    
 	    
-	    
-	    
+		@RequestMapping("/corpSel.do")
+		public ModelAndView corpSel(@RequestParam(value="pageNum",defaultValue="1")int currentPage,@RequestParam("selfield") String selfield){
+		//	String selfield = request.getParameter("selfield");
+
+			if(log.isDebugEnabled()) {
+				log.debug("pageNum : " + currentPage);
+			}
+
+			int count = socialService.getSelCount();
+			//int count = cnt;
+			PagingUtil page = new PagingUtil(currentPage,count,10,10,"corpList.do");
+			
+			List<SocialCommand> list = null;
+			if(count > 0) {
+				
+				Map<String,Object> map = new HashMap<String,Object>();
+				
+				map.put("start", page.getStartCount());
+				map.put("end", page.getEndCount());
+				map.put("selfield", selfield);
+				System.out.println("socialCommand==selfind===========:"+selfield);
+				list = socialService.CorpSelList(map);
+			} else {
+				list = Collections.emptyList();
+			}
+			
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("/social/social_corp");
+			mav.addObject("count", count);
+			mav.addObject("list",list);
+			mav.addObject("selfield",selfield);
+			mav.addObject("pagingHtml",page.getPagingHtml());
+			
+			System.out.println("socialCommand==count===========:"+count);
+			
+			return mav;
+		} 	    
+		@RequestMapping("/eventList.do")
+		public ModelAndView eventList(@RequestParam(value="pageNum",defaultValue="1") int currentPage) {
+			
+			if(log.isDebugEnabled()) {
+				log.debug("pageNum : " + currentPage);
+			}
+			
+			int count = socialService.getEventCount();
+			
+			PagingUtil page = new PagingUtil(currentPage,count,10,10,"corpList.do");
+			
+			List<SocialCommand> list = null;
+			if(count > 0) {
+				
+				Map<String,Object> map = new HashMap<String,Object>();
+				
+				map.put("start", page.getStartCount());
+				map.put("end", page.getEndCount());
+				
+				list = socialService.eventList(map);
+			} else {
+				list = Collections.emptyList();
+			}
+			
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("/social/social_event");
+			mav.addObject("count", count);
+			mav.addObject("list",list);
+			mav.addObject("pagingHtml",page.getPagingHtml());
+			
+			System.out.println("socialCommand==count===========:"+count);
+			
+			return mav;
+		}    	    
 }

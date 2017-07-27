@@ -13,8 +13,9 @@ public interface SocialService {
 	public SocialCommand resultSteptop(int kpi_seq);
 	public SocialCommand resultSteplow(int kpi_seq);
 	public SocialCommand resultMent(int kpi_seq);
-	
+	public int getSelCount();
 	public int getCropCount();
+	public int getEventCount();
 //	public int getMemberCount();
 	public void insertSocial(SocialCommand social);
 //	public SocialCommand getMember(String id);
@@ -36,5 +37,7 @@ public interface SocialService {
 	public List<SocialCommand> chartAllMyTotal(Map<String,Object> map);
 	public List<SocialCommand> chartRaderSocial(Map<String,Object> map);
 	public List<SocialCommand> socialCorpList(Map<String,Object> map);
+	public List<SocialCommand> CorpSelList(Map<String,Object> map);
+	public List<SocialCommand> eventList(Map<String,Object> map);
 	
 }

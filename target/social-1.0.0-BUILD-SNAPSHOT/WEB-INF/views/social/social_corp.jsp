@@ -38,17 +38,17 @@
 	  <div class="inner_motion full_width">
       <div class="result_tit">
         <h2 class="tit_page">자가진단 참여기업 리스트<small>  Corporation List</small></h2>
-       	<form action="list.do" id="search" method="get">
+       	<form role="form"  action="/social/self/corpSel.do" method="post" commandName="social">
        <table  style="text-align:left;border:0;" >
        <tr>
          <td class="alignLeft">
-              <select class="ui-select" name="keyfield" id="keyfield" required="required">
+              <select class="ui-select" name="selfield" >
                 <option value="">선택</option>
-                <option value="1" >전체 기업</option>    
-                <option value="9">완료 기업</option>    
-                <option value="8" >미완료 기업</option>      
+                <option value="all" >전체 기업</option>    
+                <option value="yflag">완료 기업</option>    
+                <option value="nflag" >미완료 기업</option>      
           </select>
-           <a href="#" class="btn bg_orange serchBtn" >검색 </a>          
+           <button  class="btn bg_orange innerBtn" onclick="return stepForm8();">검색</button>
         </td> 
        </tr>
        </table>
@@ -103,4 +103,16 @@
       </div>
       </section>
       </body>
+  <script>
+ $(document).ready(function() { 
+// 	  alert("AAAAA");  
+ });
+ 
+  function stepForm8(){
+ var comSubmit = new ComSubmit("frm");
+ //comSubmit.setUrl("<c:url value='/self/step2.do'/>");
+ //comSubmit.addParam("kpi_seq", $("#kpi_seq").val());
+ comSubmit.submit();
+ }
+  </script>
  </html>

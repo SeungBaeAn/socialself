@@ -227,7 +227,7 @@ function fn_updateBoard(){
 //	comSubmit.addParam("kpi_seq", $("#kpi_seq").val());
 	comSubmit.submit();
 }
-function fmCheck(){
+function fmCheck1(){
 	  if(fnMemberValidation() == false) return false;
 
 		fn_updateBoard();
@@ -260,7 +260,7 @@ function fmCheck(){
 		   return false;
 		  }
 	  
-	  var chk_radio1 = document.getElementsByName('EVENT_USE');
+	  var chk_radio1 = document.getElementsByName('event_use');
 	  var sel_type = null;
 	  
 		for(var i=0;i<chk_radio1.length;i++){

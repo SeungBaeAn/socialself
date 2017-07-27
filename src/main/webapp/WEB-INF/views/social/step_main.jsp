@@ -17,9 +17,6 @@
   <script src="../js/ui.js"></script>
 </head>
    	<body>
- 		<form id="socialForm" 
-              method="post"
-              action="/api/self/step">
 	<!-- contents -->
             <header class="header">
                 <div class="inner">

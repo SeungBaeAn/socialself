@@ -38,23 +38,22 @@
 	  <div class="inner_motion full_width">
       <div class="result_tit">
         <h2 class="tit_page">자가진단 참여기업 리스트<small>  Corporation List</small></h2>
-       	<form action="list.do" id="search" method="get">
+       	<form role="form"  action="/social/self/corpSel.do" method="post" commandName="social">
        <table  style="text-align:left;border:0;" >
        <tr>
          <td class="alignLeft">
-              <select class="ui-select" name="keyfield" id="keyfield" required="required">
-                <option value="">선택</option>
-                <option value="1" >전체 기업</option>    
-                <option value="9">완료 기업</option>    
-                <option value="8" >미완료 기업</option>      
+              <select class="ui-select" name="selfield"  required="required">
+                <option value="top">선택</option>
+                <option value="all" <c:if test="${selfield eq 'all'}">selected</c:if>>전체 기업</option>    
+                <option value="yflag" <c:if test="${selfield eq 'yflag'}">selected</c:if>>완료 기업</option>    
+                <option value="nflag" <c:if test="${selfield eq 'nflag'}">selected</c:if>>미완료 기업</option>      
           </select>
-           <a href="#" class="btn bg_orange innerBtn" >검색 </a>          
+           <button  class="btn bg_orange innerBtn" onclick="return stepForm8();">검색</button>
         </td> 
        </tr>
        </table>
 	 </form>
       </div>
-    <input id="KPI_SEQ" type="hidden" name="KPI_SEQ"  value="{{_data.KPI_SEQ}}"></input>
    	<c:if test="${count == 0}">
 	<div align="center">출력할 내용이 없습니다.</div>
 	</c:if>
@@ -98,9 +97,24 @@
 			<tr>
 				<td align="center">${pagingHtml}</td>
 			</tr>
+						<tr>
+				<td align="alignLeft"><a href="/social/self/eventList.do" >이벤트참여 목록</a></td>
+			</tr>
 		</table>
 	</c:if>
       </div>
       </section>
       </body>
+  <script>
+ $(document).ready(function() { 
+// 	  alert("AAAAA");  
+ });
+ 
+  function stepForm8(){
+ var comSubmit = new ComSubmit("frm");
+ //comSubmit.setUrl("<c:url value='/self/step2.do'/>");
+ //comSubmit.addParam("kpi_seq", $("#kpi_seq").val());
+ comSubmit.submit();
+ }
+  </script>
  </html>

@@ -41,7 +41,7 @@ public class MemberUpdateController {
 			log.debug("memberCommand : " + memberCommand);
 		}
 		
-		//유효성 체크
+	
 		new MemberValidator().validate(memberCommand, result);
 		if(result.hasErrors()){
 			return "updateForm";

@@ -62,10 +62,18 @@ public class SocialCommand {
 	private int kpi_total_num;
 	private String kpi_step_nm;
 	private String event_use_yn;
+	private String selfield;
 	
 	
 	
 	
+	
+	public String getSelfield() {
+		return selfield;
+	}
+	public void setSelfield(String selfield) {
+		this.selfield = selfield;
+	}
 	public int getKpi_total_num() {
 		return kpi_total_num;
 	}
@@ -431,7 +439,7 @@ public class SocialCommand {
 
 	@Override
 	public String toString() {
-		return "SocialCommand [kpi_seq=" + kpi_seq + ", company=" + company + ", licensee=" + licensee + ", ceo_name=" + ceo_name + ",business_type=" + business_type + ", bs_type=" + bs_type + ", city_zone=" + city_zone + ", kpi_form1=" + kpi_form1 +",kpi_form2=" + kpi_form2 + ", kpi_form3=" + kpi_form3 + ", kpi_form3_1=" + kpi_form3_1 + ", kpi_form3_3=" + kpi_form3_3 + ",kpi_form3_2=" + kpi_form3_2 + ", kpi_form6_1=" + kpi_form6_1 + ", kpi_form6_2=" + kpi_form6_2 + ", kpi_form6_3=" + kpi_form6_3 +",kpi_form13_1=" + kpi_form13_1 + ", kpi_form13_2=" + kpi_form13_2 + ", kpi_form4=" + kpi_form4 + ", kpi_form5=" + kpi_form5 + ",kpi_form6=" + kpi_form6 + ", kpi_form7=" + kpi_form7 + ", kpi_form8=" + kpi_form8 +",kpi_form8_pay=" + kpi_form8_pay + ", kpi_form9=" + kpi_form9 + ", kpi_form10=" + kpi_form10 + ", kpi_form10_pay=" + kpi_form10_pay + ",kpi_form11=" + kpi_form11 + ", kpi_form11_pay=" + kpi_form11_pay + ", kpi_form12=" + kpi_form12+",kpi_form12_pay=" + kpi_form12_pay + ", kpi_form13=" + kpi_form13 + ", kpi_form13_3=" + kpi_form13_3 + ", kpi_form13_4=" + kpi_form13_4 + ",kpi_form14=" + kpi_form14 + ", kpi_form15=" + kpi_form15 + ", kpi_total=" + kpi_total+",kpi_step=" + kpi_step + ", load_date=" + load_date + ", end_date=" + end_date + ", kpi_and=" + kpi_and + ",event_name=" + event_name + ", event_addr=" + event_addr + ", event_hp=" + event_hp+",event_use=" + event_use+",grp_nm="+grp_nm+",total_point=" + total_point+",kpi_work_n=" + kpi_work_n+",kpi_pay_n=" + kpi_pay_n+",kpi_here_n=" + kpi_here_n+",kpi_sales_n=" + kpi_sales_n+",kpi_bs_n=" + kpi_bs_n+",step_mentnm=" + step_mentnm+",step_imgnm=" + step_imgnm+",top_list=" + top_list+",low_list=" + low_list+",result=" + result+",kpi_total_num=" + kpi_total_num+",event_use_yn=" + event_use_yn+",kpi_step_nm=" + kpi_step_nm+"]";
+		return "SocialCommand [kpi_seq=" + kpi_seq + ", company=" + company + ", licensee=" + licensee + ", ceo_name=" + ceo_name + ",business_type=" + business_type + ", bs_type=" + bs_type + ", city_zone=" + city_zone + ", kpi_form1=" + kpi_form1 +",kpi_form2=" + kpi_form2 + ", kpi_form3=" + kpi_form3 + ", kpi_form3_1=" + kpi_form3_1 + ", kpi_form3_3=" + kpi_form3_3 + ",kpi_form3_2=" + kpi_form3_2 + ", kpi_form6_1=" + kpi_form6_1 + ", kpi_form6_2=" + kpi_form6_2 + ", kpi_form6_3=" + kpi_form6_3 +",kpi_form13_1=" + kpi_form13_1 + ", kpi_form13_2=" + kpi_form13_2 + ", kpi_form4=" + kpi_form4 + ", kpi_form5=" + kpi_form5 + ",kpi_form6=" + kpi_form6 + ", kpi_form7=" + kpi_form7 + ", kpi_form8=" + kpi_form8 +",kpi_form8_pay=" + kpi_form8_pay + ", kpi_form9=" + kpi_form9 + ", kpi_form10=" + kpi_form10 + ", kpi_form10_pay=" + kpi_form10_pay + ",kpi_form11=" + kpi_form11 + ", kpi_form11_pay=" + kpi_form11_pay + ", kpi_form12=" + kpi_form12+",kpi_form12_pay=" + kpi_form12_pay + ", kpi_form13=" + kpi_form13 + ", kpi_form13_3=" + kpi_form13_3 + ", kpi_form13_4=" + kpi_form13_4 + ",kpi_form14=" + kpi_form14 + ", kpi_form15=" + kpi_form15 + ", kpi_total=" + kpi_total+",kpi_step=" + kpi_step + ", load_date=" + load_date + ", end_date=" + end_date + ", kpi_and=" + kpi_and + ",event_name=" + event_name + ", event_addr=" + event_addr + ", event_hp=" + event_hp+",event_use=" + event_use+",grp_nm="+grp_nm+",total_point=" + total_point+",kpi_work_n=" + kpi_work_n+",kpi_pay_n=" + kpi_pay_n+",kpi_here_n=" + kpi_here_n+",kpi_sales_n=" + kpi_sales_n+",kpi_bs_n=" + kpi_bs_n+",step_mentnm=" + step_mentnm+",step_imgnm=" + step_imgnm+",top_list=" + top_list+",low_list=" + low_list+",result=" + result+",kpi_total_num=" + kpi_total_num+",event_use_yn=" + event_use_yn+",kpi_step_nm=" + kpi_step_nm+",selfield=" + selfield+"]";
 	}
 	
 	

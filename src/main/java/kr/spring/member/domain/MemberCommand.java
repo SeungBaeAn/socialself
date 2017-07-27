@@ -9,7 +9,7 @@ public class MemberCommand {
 	private String name;
 	private Date reg_date;
 	
-	//비밀번호 일치 여부 체크
+
 	public boolean isCheckedPasswd(String userPasswd) {
 		if(passwd.equals(userPasswd)) {
 			return true;
