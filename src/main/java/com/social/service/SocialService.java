@@ -13,7 +13,7 @@ public interface SocialService {
 	public SocialCommand resultSteptop(int kpi_seq);
 	public SocialCommand resultSteplow(int kpi_seq);
 	public SocialCommand resultMent(int kpi_seq);
-	public int getSelCount();
+	public int getSelCount(Map<String,Object> map);
 	public int getCropCount();
 	public int getEventCount();
 //	public int getMemberCount();

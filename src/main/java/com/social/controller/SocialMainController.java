@@ -47,7 +47,8 @@ public class SocialMainController {
 	
 	//
 	private Logger log = Logger.getLogger(this.getClass());
-	
+	private int rowCount = 10;
+	private int pageCount = 10;
 	@Resource(name="socialService")
 	private SocialService socialService;
 
@@ -494,25 +495,27 @@ public class SocialMainController {
 		}    
 	    
 		@RequestMapping("/corpSel.do")
-		public ModelAndView corpSel(@RequestParam(value="pageNum",defaultValue="1")int currentPage,@RequestParam("selfield") String selfield){
+		public ModelAndView corpSel(@RequestParam(value="pageNum",defaultValue="1")int currentPage,@RequestParam(value="selfield",defaultValue="") String selfield){
 		//	String selfield = request.getParameter("selfield");
 
 			if(log.isDebugEnabled()) {
 				log.debug("pageNum : " + currentPage);
 			}
-
-			int count = socialService.getSelCount();
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			map.put("selfield", selfield);
+			System.out.println("socialCommand==selfind===========:"+selfield);
+			int count = socialService.getSelCount(map);
 			//int count = cnt;
-			PagingUtil page = new PagingUtil(currentPage,count,10,10,"corpList.do");
+			PagingUtil page = new PagingUtil(selfield,currentPage,count,rowCount,pageCount,"corpSel.do");
 			
 			List<SocialCommand> list = null;
 			if(count > 0) {
 				
-				Map<String,Object> map = new HashMap<String,Object>();
+			//	Map<String,Object> map = new HashMap<String,Object>();
 				
 				map.put("start", page.getStartCount());
 				map.put("end", page.getEndCount());
-				map.put("selfield", selfield);
+			//	map.put("selfield", selfield);
 				System.out.println("socialCommand==selfind===========:"+selfield);
 				list = socialService.CorpSelList(map);
 			} else {

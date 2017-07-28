@@ -128,8 +128,8 @@ public class SocialServiceImpl implements SocialService{
 		return socialMapper.getEventCount();
     }
 	@Override
-	public int getSelCount() {
-		return socialMapper.getSelCount();
+	public int getSelCount(Map<String, Object> map) {
+		return socialMapper.getSelCount(map);
 	}
 	
 }

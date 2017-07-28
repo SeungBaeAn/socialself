@@ -15,17 +15,17 @@ public class PagingUtil {
 	 * */
 	public PagingUtil(int currentPage, int totalCount, int rowCount,
 			int pageCount, String pageUrl) {
-		this(null,null,currentPage,totalCount,rowCount,pageCount,pageUrl,null);
+		this(null,currentPage,totalCount,rowCount,pageCount,pageUrl,null);
 	}
 	public PagingUtil(int currentPage, int totalCount, int rowCount,
 			int pageCount, String pageUrl, String addKey) {
-		this(null,null,currentPage,totalCount,rowCount,pageCount,pageUrl,addKey);
+		this(null,currentPage,totalCount,rowCount,pageCount,pageUrl,addKey);
 	}
-	public PagingUtil(String keyfield, String keyword, int currentPage, int totalCount, int rowCount,
+	public PagingUtil(String selfield, int currentPage, int totalCount, int rowCount,
 			int pageCount,String pageUrl) {
-		this(keyfield,keyword,currentPage,totalCount,rowCount,pageCount,pageUrl,null);
+		this(selfield,currentPage,totalCount,rowCount,pageCount,pageUrl,null);
 	}
-	public PagingUtil(String keyfield, String keyword, int currentPage, int totalCount, int rowCount,
+	public PagingUtil(String selfield, int currentPage, int totalCount, int rowCount,
 			int pageCount,String pageUrl,String addKey) {
 		
 		if(addKey == null) addKey = ""; //부가키가 null 일때 ""처리
@@ -52,10 +52,10 @@ public class PagingUtil {
 		// 이전 block 페이지
 		pagingHtml = new StringBuffer();
 		if (currentPage > pageCount) {
-			if(keyword==null){//검색 미사용시
+			if(selfield==null){//검색 미사용시
 				pagingHtml.append("<a href="+pageUrl+"?pageNum="+ (startPage - 1) + addKey +">");
 			}else{
-				pagingHtml.append("<a href="+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (startPage - 1) + addKey +">");
+				pagingHtml.append("<a href="+pageUrl+"?selfield="+selfield+"&pageNum="+ (startPage - 1) + addKey +">");
 			}
 			pagingHtml.append("이전");
 			pagingHtml.append("</a>");
@@ -71,10 +71,10 @@ public class PagingUtil {
 				pagingHtml.append(i);
 				pagingHtml.append("</font></b>");
 			} else {
-				if(keyword==null){//검색 미사용시
+				if(selfield==null){//검색 미사용시
 					pagingHtml.append("&nbsp;<a href='"+pageUrl+"?pageNum=");
 				}else{
-					pagingHtml.append("&nbsp;<a href='"+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum=");
+					pagingHtml.append("&nbsp;<a href='"+pageUrl+"?selfield="+selfield+"&pageNum=");
 				}
 				pagingHtml.append(i);
 				pagingHtml.append(addKey+"'>");
@@ -86,10 +86,10 @@ public class PagingUtil {
 		pagingHtml.append("&nbsp;&nbsp;|&nbsp;&nbsp;");
 		// 다음 block 페이지
 		if (totalPage - startPage >= pageCount) {
-			if(keyword==null){//검색 미사용시
+			if(selfield==null){//검색 미사용시
 				pagingHtml.append("<a href="+pageUrl+"?pageNum="+ (endPage + 1) + addKey +">");
 			}else{
-				pagingHtml.append("<a href="+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (endPage + 1) + addKey +">");
+				pagingHtml.append("<a href="+pageUrl+"?selfield="+selfield+"&pageNum="+ (endPage + 1) + addKey +">");
 			}
 			pagingHtml.append("다음");
 			pagingHtml.append("</a>");

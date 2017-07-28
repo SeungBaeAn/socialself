@@ -1046,5 +1046,19 @@
 		]]>	    
 	    </select> 
 
-	    	 		
+	   <select id="getSelCount" parameterType="map" resultType="integer">
+        SELECT count(*)
+		FROM SOCIAL_INFO_MASTER
+	<where>
+		<if test='selfield != null and selfield.equals("yflag")'>	
+	     KPI_STEP = 9
+	    </if>
+	    <if test='selfield != null and selfield.equals("nflag")'>	
+	     KPI_STEP between '1' and '8'
+	    </if>
+	    <if test='selfield != null and selfield.equals("all")'>	
+	     KPI_STEP between '1' and '9'
+	    </if>
+	</where>   	     	       
+	    </select>     	 		
 </mapper>

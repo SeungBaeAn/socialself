@@ -55,8 +55,8 @@ public interface  SocialMapper {
 	public List<SocialCommand> socialCorpList(Map<String,Object> map);
 	public List<SocialCommand> CorpSelList(Map<String,Object> map);
 	public List<SocialCommand> eventList(Map<String,Object> map);
-	@Select("SELECT count(*) FROM SOCIAL_INFO_MASTER WHERE KPI_STEP = '9'")
-	public int getSelCount();
+//	@Select("SELECT count(*) FROM SOCIAL_INFO_MASTER WHERE KPI_STEP = '9'")
+	public int getSelCount(Map<String,Object> map);
 	
 	
 }
