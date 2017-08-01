@@ -97,9 +97,6 @@
 			<tr>
 				<td align="center">${pagingHtml}</td>
 			</tr>
-						<tr>
-				<td align="alignLeft"><a href="/social/self/eventList.do" >이벤트참여 목록</a></td>
-			</tr>
 		</table>
 	</c:if>
       </div>

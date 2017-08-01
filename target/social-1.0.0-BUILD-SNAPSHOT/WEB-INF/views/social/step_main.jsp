@@ -40,14 +40,7 @@
     <!-- //inner end -->
     
         <!-- 2017.07.06 이벤트 팝업 추가 -->
-    <div class="dim showPopup"></div>
-    <div class="popup event_popup showPopup">
-      <img src="../images/img_event.jpg" alt="SE자가진단 KIT OPEN 기념 이벤트" usemap="#map" />
-      <map name="map">
-        <area shape="rect" coords="555,380,717,402" href="http://sv.seis.or.kr" target="_blank" alt="온라인자가진단사이트바로가기" title="온라인자가진단 사이트 바로가기">
-      </map>
-      <br /><a href="#" class="btn_close_popup js-closePop"><img src="../images/btn_event_close.png" alt="닫기" /></a>
-    </div>
+
     <!-- //2017.07.06 이벤트 팝업 추가 end -->
 	</section>              
 	</form>

@@ -86,40 +86,8 @@
 
     
         </table>
-                <!-- 2017.07.06 추가 -->
-        <div class="mgt30">
-          <span class="ui_radio event">
-            <input type="checkbox" id="event" name="event_use" onclick="chkEvent()" value="Y" value="${social.event_use}" selected>
-            <label for="event" class="txt_event">이벤트 참여하기</label>
-          </span>
-        </div>
-        <table class="tbl_write tbl_hidden mgt25">
-          <colgroup>
-            <col style="width:145px;" />
-            <col />
-          </colgroup>
-          <tr>
-            <th><span class="bullet_blue">성명</span></th>
-            <td><input type="text" class="inputSt" name="event_name" id="event_name" value="${social.event_name}"/></td>
-          </tr>
-          <tr>
-            <th><span class="bullet_blue">연락처</span></th>
-            <td><input type="text" class="inputSt" name="event_hp" id="event_hp" value="${social.event_hp}"/></td>
-          </tr>
-          <tr>
-            <th><span class="bullet_blue">주소</span></th>
-            <td>
-              <input type="text" class="inputSt w100p" name="event_addr" id="event_addr" value="${social.event_addr}"/>
-             
-            </td>
-           <tr>
-            <th></th>
-            <td>
-             
-              <p class="txt_info mgt30"><strong>* 상기 정보는 이벤트 이외의 목적으로 사용하지 않습니다.</strong></p>
-            </td>
-          </tr>
-        </table>
+        <!-- 2017.07.06 이벤트추가 -->
+
         <!-- //2017.07.06 추가 end -->
  
       <!-- //company_info end -->
@@ -259,37 +227,6 @@ function fmCheck1(){
 		   $('#bs_type').focus();
 		   return false;
 		  }
-	  
-	  var chk_radio1 = document.getElementsByName('event_use');
-	  var sel_type = null;
-	  
-		for(var i=0;i<chk_radio1.length;i++){
-
-			if(chk_radio1[i].checked == true){ 
-
-				sel_type = chk_radio1[i].value;
-
-			}
-
-		}
-	  if(sel_type =="Y"){			  
-		   if($.trim($('#event_name').val()) == ''){
-			   alert("성명을 입력해 주세요.");
-			   $('#event_name').focus();
-			   return false;
-			  }
-		
-		  if($.trim($('#event_hp').val()) == ''){
-			   alert("연락처를 입력해 주세요.");
-			   $('#event_hp').focus();
-			   return false;
-			  } 
-		  if($.trim($('#event_addr').val()) == ''){
-			   alert("주소를 입력해 주세요.");
-			   $('#event_addr').focus();
-			   return false;
-			  }
-	     }
     }
 
 
