@@ -6,6 +6,9 @@
 <html>
 <head>
   <title>사회적 가치 지표(SVI) 자가진단</title>
+  <link href="../images/app-icon-32.png" sizes="32x32" rel="icon" type="image/x-icon" />
+  <link rel="shortcut icon" sizes="32x32" href="../images/app-icon-32.png">
+  <meta name="theme-color" content="#fff">
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">

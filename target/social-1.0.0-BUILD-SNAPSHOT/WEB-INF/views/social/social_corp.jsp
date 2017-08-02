@@ -97,6 +97,11 @@
 			<tr>
 				<td align="center">${pagingHtml}</td>
 			</tr>
+			<tr>
+		         <c:if test="${!empty userId}">
+				<td align="right">(<a href="../logout.do">로그아웃</a>)</td>
+				</c:if>
+				</tr>
 		</table>
 	</c:if>
       </div>

@@ -14,6 +14,6 @@ public class LogoutController {
 		//
 		session.invalidate();
 		
-		return "redirect:/list.do";
+		return "redirect:/login.do";
 	}
 }

@@ -27,8 +27,8 @@ public class MemberInsertController {
    @Autowired
    private IdNotDuplicatedValidator idNodDuplicatedValidator;
    
-   //커맨드 객체(자바빈) 초기화
-   @ModelAttribute("member")   //@ModelAttribute해야 request에 저장
+   //
+   @ModelAttribute("member")   //@
    public MemberCommand initCommand(){
       return new MemberCommand();
    }
@@ -45,10 +45,10 @@ public class MemberInsertController {
 		   log.debug("memberCommand : " + memberCommand);
 	   }
 	   
-	   //id,passwd,name 전송 체크
+	   //id,passwd,name 
 	   new MemberValidator().validate(memberCommand, result);
 	   
-	   //id 중복 체크
+	   //id 
 	   idNodDuplicatedValidator.validate(memberCommand, result);
 	   if(result.hasErrors()) {
 		   return form();

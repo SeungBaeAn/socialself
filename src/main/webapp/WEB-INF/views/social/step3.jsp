@@ -43,7 +43,7 @@
       <li><a href="#" style="text-decoration:none">기업활동에서의<br />혁신성</a></li>
     </ol>
     <!-- // tab -->
- <div class="inner_motion">
+ <div class="inner motion">
  <input id="kpi_seq" type="hidden" name="kpi_seq"  value="${social.kpi_seq}"></input>
       <h2 class="tit_page">사업활동의 사회적 가치 지향성</h2>
 
@@ -175,11 +175,6 @@ function fnMemberValidation2(){
 		}
 }
 
-var $target = $(".motion");
-var $tab = $(".is-current");
-$tab.animate({"top":100});
-TweenMax.from($target,0.5,{y:50, autoAlpha:0, ease:Power1.easeInOut});
-TweenMax.fromTo($tab,0.8,{x:-5},{x:0, ease:Power1.easeInOut, repeat:5});
 
 
 

@@ -44,7 +44,7 @@
     </ol>
     <!-- // tab -->
 
-	  <div class="inner_motion">
+	  <div class="inner motion">
       <h2 class="tit_page">이윤의 사회적 환원 노력도</h2>
       <input id="kpi_seq" type="hidden" name="kpi_seq"  value="${social.kpi_seq}"></input>
       <div class="box_question">
@@ -173,11 +173,7 @@ comSubmit.submit();
  		}
  }
 
-var $target = $(".motion");
-var $tab = $(".is-current");
-$tab.animate({"top":100});
-TweenMax.from($target,0.5,{y:50, autoAlpha:0, ease:Power1.easeInOut});
-TweenMax.fromTo($tab,0.8,{x:-5},{x:0, ease:Power1.easeInOut, repeat:5});
+
 
 
 </script>

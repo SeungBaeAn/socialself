@@ -44,7 +44,7 @@
     </ol>
     <!-- // tab -->
     
-  <div class="inner_motion">
+  <div class="inner motion">
       <h2 class="tit_page">사회적 경제 조직간의 협력 수준</h2>
      <input id="kpi_seq" type="hidden" name="kpi_seq"  value="${social.kpi_seq}"></input>
       <div class="box_question">
@@ -153,11 +153,7 @@ comSubmit.submit();
  		return false;
  		}
  }
-var $target = $(".motion");
-var $tab = $(".is-current");
-$tab.animate({"top":100});
-TweenMax.from($target,0.5,{y:50, autoAlpha:0, ease:Power1.easeInOut});
-TweenMax.fromTo($tab,0.8,{x:-5},{x:0, ease:Power1.easeInOut, repeat:5});
+
 </script>
 
 </html>         

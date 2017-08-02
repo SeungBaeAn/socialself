@@ -45,7 +45,7 @@
     </ol>
     <!-- // tab -->
 
-  <div class="inner_motion">
+  <div class="inner motion">
       <h2 class="tit_page">기업 운영 및 제품의 혁신성</h2>
     		 <input id="kpi_seq" type="hidden" name="kpi_seq"  value="${social.kpi_seq}"></input>
      		 <input id="kpi_pay_n" type="hidden" name="kpi_pay_n"  value="${social.kpi_pay_n}"></input>
@@ -210,10 +210,5 @@
  }
 
 
-var $target = $(".motion");
-var $tab = $(".is-current");
-$tab.animate({"top":100});
-TweenMax.from($target,0.5,{y:50, autoAlpha:0, ease:Power1.easeInOut});
-TweenMax.fromTo($tab,0.8,{x:-5},{x:0, ease:Power1.easeInOut, repeat:5});
 </script>
 </html>        

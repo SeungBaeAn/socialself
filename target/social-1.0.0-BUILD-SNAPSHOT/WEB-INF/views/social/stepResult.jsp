@@ -35,7 +35,7 @@
 	<!-- contents -->
 	<section class="contents">
 
-	  <div class="inner_motion full_width">
+	  <div class="inner motion full_width">
       <div class="result_tit">
         <h2 class="tit_page">SE 자가진단 KIT 결과</h2>
         <a href="#" class="btn bg_orange btn_print" onclick="javascript:window.print()">인쇄</a>
@@ -372,10 +372,6 @@ $.getJSON("/social/self/gsonList4.do",
         window.myRadar = new Chart(document.getElementById("canvas2"), config);
     };
 
-var $target = $(".motion");
-var $tab = $(".is-current");
-$tab.animate({"top":100});
-TweenMax.from($target,0.5,{y:50, autoAlpha:0, ease:Power1.easeInOut});
-TweenMax.fromTo($tab,0.8,{x:-5},{x:0, ease:Power1.easeInOut, repeat:5});
+
 </script>
 </html>
