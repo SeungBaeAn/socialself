@@ -20,9 +20,9 @@
   <script src="../js/Chart.js"></script>
   <script src="../js/Chart.StackedBar.js"></script>
   <script src="../js/Chart.Radar.js"></script>
-   <script src="../js/utils.js"></script>
+  <script src="../js/utils.js"></script>
   <script src="../js/Chart.bundle.js"></script>
-    <script type="text/javascript" src="../js/board.js"></script>
+  <script type="text/javascript" src="../js/board.js"></script>
 
 </head>
     <body>
@@ -63,10 +63,10 @@
           <col style="width:145px;" />
           <col style="width:115px;" />
           <col style="width:115px;" />
-           <col style="width:145px;" />
+          <col style="width:145px;" />
           <col style="width:115px;" />
-           <col style="width:115px;" />
-            <col style="width:125px;" />
+          <col style="width:115px;" />
+          <col style="width:125px;" />
         </colgroup>
         <thead>
           <tr style="text-align:center;">
@@ -82,7 +82,7 @@
         <tbody>
         <c:forEach var="social" items="${list}">
            <tr>
-            <td  style="text-align:center;"><c:if test="${social.kpi_step eq 9}"><a href="/social/self/stepResultList.do?kpi_seq=${social.kpi_seq}" >${social.company}</a></c:if><c:if test="${social.kpi_step ne 9}">${social.company}</c:if></td>
+            <td  style="text-align:center;"><c:if test="${social.kpi_step eq 9}"><a href="/social/self/stepResultList.do?kpi_seq=${social.kpi_seq}" style="text-decoration:none;color:#0b7cc1;">${social.company}</a></c:if><c:if test="${social.kpi_step ne 9}">${social.company}</c:if></td>
             <td class="alignLeft">${social.business_type}</td>
             <td class="alignLeft">${social.bs_type}</td>
             <td style="text-align:center;">${social.kpi_step_nm}</td>
@@ -98,10 +98,10 @@
 				<td align="center">${pagingHtml}</td>
 			</tr>
 			<tr>
-		         <c:if test="${!empty userId}">
-				<td align="right">(<a href="../logout.do">로그아웃</a>)</td>
-				</c:if>
-				</tr>
+		    <c:if test="${!empty userId}">
+				<td align="right"><a href="../list.do">사용자관리</a>&nbsp;|&nbsp;(<a href="../logout.do">로그아웃</a>)</td>
+			</c:if>
+			</tr>
 		</table>
 	</c:if>
       </div>

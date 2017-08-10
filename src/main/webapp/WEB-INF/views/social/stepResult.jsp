@@ -22,7 +22,6 @@
   <script src="../js/Chart.Radar.js"></script>
    <script src="../js/utils.js"></script>
   <script src="../js/Chart.bundle.js"></script>
-
 </head>
     <body>
     <form>
@@ -188,7 +187,11 @@
         <canvas id="canvas2"></canvas>
         </div>
       </div>
+      <br />
       <!-- //graph end -->
+      <div style="text-align:right;">
+      <c:if test="${userId ne 'self'}"><input type="button" onclick="location.href='corpList.do'" value="자가진단 리스트"  style="text-align:right;width:120px; padding:3;background:#f5821f; color:#fff !important;"></c:if>
+     </div>
     </div>
     <!-- //inner end -->
 	</section>

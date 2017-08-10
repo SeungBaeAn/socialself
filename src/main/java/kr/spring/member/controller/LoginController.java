@@ -62,10 +62,10 @@ public class LoginController {
 			if(check) {
 			   
 				session.setAttribute("userId", memberCommand.getId());
-				if(memberCommand.getId().equals("admin")){
-					return  "redirect:/self/corpList.do";	
+				if(memberCommand.getId().equals("self")){
+					return  "redirect:/self/step.do";	
 				}else{
-				return  "redirect:/self/step.do";
+				return  "redirect:/self/corpList.do";
 				}
 			}else {
 				//

@@ -85,7 +85,7 @@ section, article, aside, footer, header, nav, hgroup {display:block;}
 .serchBtn{width:90px; padding:0; color:#fff !important;}
 .btn_start{display:inline-block; width:470px; height:90px; border-radius:50px; background:#222; color:#fff; font-size:30px; font-weight:700; text-align:center; line-height:90px;}
 .btn_start:after{content:""; display:inline-block;width:28px; height:28px; margin-left:40px; background:url(../images/sprites.png) no-repeat 0 -60px; vertical-align: middle;}
-
+.innerBtn1{width:120px; padding:3;background:#f5821f; color:#fff !important;}	
 /* tab */
 .tab{margin-bottom:80px; overflow: hidden;}
 .tab li{float:left; margin-left:-11px;}
