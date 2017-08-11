@@ -5,6 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+   <title>SE 자가진단 KIT</title>
+   <link rel="shortcut icon" sizes="32x32" href="./images/app-icon-32.png">
 <meta charset="UTF-8">
 <style>
 

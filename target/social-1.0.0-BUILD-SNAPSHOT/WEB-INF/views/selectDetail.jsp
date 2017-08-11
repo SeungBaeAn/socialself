@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SE 자가진단 KIT</title>
+   <title>SE 자가진단 KIT</title>
+   <link rel="shortcut icon" sizes="32x32" href="./images/app-icon-32.png">
 <style type="text/css">
 	div{
 		width:400px;

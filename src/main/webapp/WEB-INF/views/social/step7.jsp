@@ -5,7 +5,9 @@
 <%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>   
 <!DOCTYPE html>
 <html>
-  <title>사회적 가치 지표(SVI) 자가진단</title>
+<head>
+   <title>SE 자가진단 KIT</title>
+   <link rel="shortcut icon" sizes="32x32" href="../images/app-icon-32.png">
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,7 +52,7 @@
       <div class="box_question">
         <p class="question">귀사의 지난 한해 전체 직원의 1인당 월평균 임금은 얼마입니까?</p>
         <div class="inputArea mgt25">
-          유급근로자 월평균 임금(원) : <input type="text" class="inputSt" name="kpi_form8_pay" id="kpi_form8_pay" value="${social.kpi_form8_pay}" onkeyup="inputNumberFormat(this)"/>
+          유급근로자 월평균 임금(원) : <input type="text" class="inputSt" name="kpi_form8_pay" id="kpi_form8_pay" value="<c:if test="${social.kpi_form8_pay eq 0}"> </c:if><c:if test="${social.kpi_form8_pay ne 0}"> ${social.kpi_form8_pay}</c:if>" onkeyup="inputNumberFormat(this)"/>
         </div>
       </div>
 

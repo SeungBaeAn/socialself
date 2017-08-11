@@ -5,7 +5,9 @@
 <%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>   
 <!DOCTYPE html>
 <html>
-  <title>사회적 가치 지표(SVI) 자가진단</title>
+<head>
+   <title>SE 자가진단 KIT</title>
+   <link rel="shortcut icon" sizes="32x32" href="../images/app-icon-32.png">
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,7 +52,7 @@
       <div class="box_question">
         <p class="question">귀사의 지난 한해 총 근로자수는 몇 명입니까?</p>
         <div class="inputArea mgt25">
-          유급근로자 수(명) : <input type="text" class="inputSt"  name="kpi_form10_pay" id="kpi_form10_pay" value="${social.kpi_form10_pay}" onkeyup="inputNumberFormat(this)" />
+          유급근로자 수(명) : <input type="text" class="inputSt"  name="kpi_form10_pay" id="kpi_form10_pay" value="<c:if test="${social.kpi_form10_pay eq 0}"> </c:if><c:if test="${social.kpi_form10_pay ne 0}"> ${social.kpi_form10_pay}</c:if>" onkeyup="inputNumberFormat(this)" />
         </div>
       </div>
 
@@ -65,7 +67,7 @@
       <div class="box_question">
         <p class="question">귀사의 지난 한해 총 매출액은 얼마입니까?</p>
         <div class="inputArea mgt25">
-          매출액(원) : <input type="text" class="inputSt" name="kpi_form11_pay" id="kpi_form11_pay" value="${social.kpi_form11_pay}" onkeyup="inputNumberFormat(this)" />
+          매출액(원) : <input type="text" class="inputSt" name="kpi_form11_pay" id="kpi_form11_pay" value="<c:if test="${social.kpi_form11_pay eq 0}"> </c:if><c:if test="${social.kpi_form11_pay ne 0}"> ${social.kpi_form11_pay}</c:if>" onkeyup="inputNumberFormat(this)" />
         </div>
       </div>
 
@@ -80,7 +82,7 @@
       <div class="box_question">
         <p class="question">귀사의 지난 한해 영업이익(손실)은 얼마입니까?</p>
         <div class="inputArea mgt25">
-          영업이익(원) : <input type="text" class="inputSt" name="kpi_form12_pay" id="kpi_form12_pay" value="${social.kpi_form12_pay}"  onkeyup="vComma(this)" />
+          영업이익(원) : <input type="text" class="inputSt" name="kpi_form12_pay" id="kpi_form12_pay" value="<c:if test="${social.kpi_form12_pay eq 0}"> </c:if><c:if test="${social.kpi_form12_pay ne 0}"> ${social.kpi_form12_pay}</c:if>"  onkeyup="vComma(this)" />
         </div>
       </div>
 

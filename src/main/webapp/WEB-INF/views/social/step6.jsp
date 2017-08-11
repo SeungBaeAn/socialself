@@ -5,7 +5,9 @@
 <%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>   
 <!DOCTYPE html>
 <html>
-  <title>사회적 가치 지표(SVI) 자가진단</title>
+<head>
+   <title>SE 자가진단 KIT</title>
+   <link rel="shortcut icon" sizes="32x32" href="../images/app-icon-32.png">
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
